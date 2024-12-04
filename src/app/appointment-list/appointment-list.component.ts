@@ -14,7 +14,7 @@ export class AppointmentListComponent {
   addAppointment(){
     if(this.newAppointmentTitle.trim().length && this.newAppointmentDate){
       let newAppoint : Appointment ={
-        id:1,
+        id:Date.now(),
         title:this.newAppointmentTitle,
         date:this.newAppointmentDate
       }
@@ -22,6 +22,9 @@ export class AppointmentListComponent {
       this.newAppointmentTitle="";
       this.newAppointmentDate=new Date();
     }
-    alert(this.appointments.length)
+  }
+
+  deleteAppointment(index:number){
+    this.appointments.splice(index,1);
   }
 }
