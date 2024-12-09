@@ -10,7 +10,7 @@ export class ReservationService {
 
   constructor(){
     let savedReservations =localStorage.getItem("reservations");
-    this.reservations=savedReservations ? JSON.parse(savedReservations);
+    this.reservations=savedReservations ? JSON.parse(savedReservations) : [];
   }
   //CRUD
 
