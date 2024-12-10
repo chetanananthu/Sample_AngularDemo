@@ -4,10 +4,11 @@
     <li *ngFor="let reservation of reservations">
         Guest:{{reservation.guestName}}<br>
         Email:{{reservation.guestEmail}}<br>
-        Room No:{{reservation.guestName}}<br>
-        Check-In:{{reservation.guestName}}<br>
-        Check-Out:{{reservation.guestName}}<br>
+        Room No:{{reservation.roomNumber}}<br>
+        Check-In:{{reservation.checkInDate}}<br>
+        Check-Out:{{reservation.checkOutDate}}<br>
         <button (click)="deleteReservation(reservation.id)">Delete</button>
+        <button [routerLink]="['/edit',reservation.id]">Edit</button>
     </li>
 </ul>
 
