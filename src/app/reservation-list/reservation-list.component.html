@@ -1,7 +1,7 @@
 <app-home></app-home>
 <h3 class="mb-2 mt-3">reservation-list</h3>
 <table class="table table-striped">
-    <thead>
+    <thead *ngIf="reservations.length; else noReservation">
         <tr>
             <th>Guest</th>
             <th>Email</th>
@@ -11,7 +11,7 @@
             <th>Actions</th>
         </tr>
     </thead>
-    <tbody *ngIf="reservations.length; else noReservation">
+    <tbody >
         <tr *ngFor="let reservation of reservations">
             <td>{{reservation.guestName}}</td>
             <td>{{reservation.guestEmail}}</td>
