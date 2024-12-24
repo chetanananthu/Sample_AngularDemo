@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class ReservationService {
 
-  private apiUrl="https://fd554605-4f1c-47d0-b8fe-6a1531588da5.mock.pstmn.io"
+  private apiUrl="https://fd554605-4f1c-47d0-b8fe-6a1531588da5.mock.pstmn.io"  //this is from postman mock url
   private reservations:Reservation[]=[];
 
   constructor(private http:HttpClient){}
@@ -19,23 +19,20 @@ export class ReservationService {
     return this.http.get<Reservation[]>(this.apiUrl+"/reservations");
   }
 
-  getReservation(id:string):Reservation | undefined{
-    return this.reservations.find(res=>res.id===id);
+  getReservation(id:string): Observable<Reservation>{
+    return this.http.get<Reservation>(this.apiUrl+"/reservations/"+id);
   }
 
-  addReservation(reservation:Reservation):void{
-    reservation.id=Date.now().toString();
-    this.reservations.push(reservation);
+  addReservation(reservation:Reservation):Observable<void>{
+    return this.http.post<void>(this.apiUrl+"/reservations",reservation);
   }
 
-deleteReservation(id:string):void{
-  let index=this.reservations.findIndex(res=>res.id===id);
-  this.reservations.splice(index,1);
+deleteReservation(id:string):Observable<void>{
+ return this.http.delete<void>(this.apiUrl+"/reservations/"+id);
 }
 
-updateReservation(id:string,updateReservation:Reservation):void{
-  let index=this.reservations.findIndex(res=>res.id===id);
-  this.reservations[index]=updateReservation;
+updateReservation(id:string,updateReservation:Reservation):Observable<void>{
+  return this.http.put<void>(this.apiUrl+"/reservations/"+id,updateReservation);
 }
 
 }
