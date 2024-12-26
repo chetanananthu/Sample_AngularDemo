@@ -9,7 +9,7 @@ import { Product } from '../models/product';
 })
 export class CartService {
 
-  private apiUrl=environment.apiUrl+"/carts";
+  private apiUrl=environment.apiUrl+"/cart";
   constructor(private http:HttpClient) { }
 
   addToCart(product:Product):Observable<Product>{
